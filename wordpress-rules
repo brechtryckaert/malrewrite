@@ -1,2 +1,25 @@
-#these rewrite rules are intended to help block automated malicious POST-requests.
+#these rewrite rules are intended to help block automated malicious POST-requests and improve security for your WordPress.
 
+#Forbid Proxy Comment Posting
+RewriteCond %{REQUEST_METHOD} =POST
+RewriteCond %{HTTP:VIA}%{HTTP:FORWARDED}%{HTTP:USERAGENT_VIA}%{HTTP:X_FORWARDED_FOR}%{HTTP:PROXY_CONNECTION} !^$ [OR]
+RewriteCond %{HTTP:XPROXY_CONNECTION}%{HTTP:HTTP_PC_REMOTE_ADDR}%{HTTP:HTTP_CLIENT_IP} !^$
+RewriteCond %{REQUEST_URI} !^/(wp-login.php|wp-admin/|wp-content/plugins/|wp-includes/).* [NC]
+RewriteRule .* - [F,NS,L]
+#as published at: http://wpsecure.net/secure-wordpress-advanced/
+
+#Block Bad Query Strings
+RewriteCond %{QUERY_STRING} ../    [NC,OR]
+RewriteCond %{QUERY_STRING} boot.ini [NC,OR]
+RewriteCond %{QUERY_STRING} tag=     [NC,OR]
+RewriteCond %{QUERY_STRING} ftp:     [NC,OR]
+RewriteCond %{QUERY_STRING} http:    [NC,OR]
+RewriteCond %{QUERY_STRING} https:   [NC,OR]
+RewriteCond %{QUERY_STRING} mosConfig [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*([|]|(|)||'|"|;|?|*).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(%22|%27|%3C|%3E|%5C|%7B|%7C).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(%0|%A|%B|%C|%D|%E|%F|127.0).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(globals|encode|config|localhost|loopback).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(request|select|insert|union|declare|drop).* [NC]
+RewriteRule ^(.*)$ - [F,L]
+#as published at: http://wpsecure.net/secure-wordpress-advanced/
