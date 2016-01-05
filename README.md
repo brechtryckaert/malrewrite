@@ -1,5 +1,5 @@
 # malrewrite
-A list of rewrite rules to counteract known malicious request by bots
+A list of rewrite rules to counteract known malicious automated requests by bots
 
 ## The idea behind malrewrite...
 The entries in this .htaccess are gathered by me and are sorted by content management system.
