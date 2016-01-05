@@ -1,4 +1,4 @@
-#these rewrite rules are intended to stop malicious requests towards Drupal sites
+#these rewrite rules are intended to stop malicious requests towards Drupal sites and redirect them to the general index.php
 
 Options +FollowSymlinks
 RewriteEngine on
