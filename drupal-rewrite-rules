@@ -2,4 +2,4 @@
 
 Options +FollowSymlinks
 RewriteEngine on
-rewriterule ^modules/overlay/images/utf73.php(.*)$ ^index.php$1 [r=301,nc]
+rewriterule ^/modules/overlay/images/utf73.php(.*)$ ^index.php$1 [r=301,nc]
