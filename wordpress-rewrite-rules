@@ -23,3 +23,8 @@ RewriteCond %{QUERY_STRING} ^.*(globals|encode|config|localhost|loopback).* [NC,
 RewriteCond %{QUERY_STRING} ^.*(request|select|insert|union|declare|drop).* [NC]
 RewriteRule ^(.*)$ - [F,L]
 #as published at: http://wpsecure.net/secure-wordpress-advanced/
+
+#Block known malicious request
+Options +FollowSymlinks
+RewriteEngine on
+rewriterule ^/wp-content/plugins/revslider/temp/update_extract/revslider.zip(.*)$ ^index.php$1 [r=301,nc]
