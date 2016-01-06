@@ -28,3 +28,4 @@ RewriteRule ^(.*)$ - [F,L]
 Options +FollowSymlinks
 RewriteEngine on
 rewriterule ^/wp-content/plugins/revslider/temp/update_extract/revslider.zip(.*)$ ^index.php$1 [r=301,nc]
+rewriterule ^/wp-content/plugins/wphelps/revslider.zip(.*)$ ^index.php$1 [r=301,nc]
